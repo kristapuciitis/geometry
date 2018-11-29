@@ -1,0 +1,26 @@
+vector<int> st;
+int in[maxn];
+int low[maxn];
+int T = 1;
+void tarjan(int v) {
+    st.push_back(v);
+    in[v] = low[v] = T++;
+    for (auto u : neigh[v]) {
+        if (!low[u.first]) {
+            tarjan(u.first);
+            low[v] = min(low[v], low[u.first]);
+        }
+        else if (!comp[u.first]) {
+            low[v] = min(low[v], in[u.first]);
+        }
+    }
+
+    if (in[v] == low[v]) {
+        while (true) {
+            int u = st.back(); st.pop_back();
+            cc[v].push_back(u);
+            comp[u] = v;
+            if (u == v) break;
+        }
+    }
+}
