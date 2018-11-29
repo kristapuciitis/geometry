@@ -5,13 +5,13 @@ int T = 1;
 void tarjan(int v) {
     st.push_back(v);
     in[v] = low[v] = T++;
-    for (auto u : neigh[v]) {
-        if (!low[u.first]) {
-            tarjan(u.first);
-            low[v] = min(low[v], low[u.first]);
+    for (int u : neigh[v]) {
+        if (!low[u]) {
+            tarjan(u);
+            low[v] = min(low[v], low[u]);
         }
         else if (!comp[u.first]) {
-            low[v] = min(low[v], in[u.first]);
+            low[v] = min(low[v], in[u]);
         }
     }
 
