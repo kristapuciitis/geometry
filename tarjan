@@ -10,7 +10,7 @@ void tarjan(int v) {
             tarjan(u);
             low[v] = min(low[v], low[u]);
         }
-        else if (!comp[u.first]) {
+        else if (!comp[u]) {
             low[v] = min(low[v], in[u]);
         }
     }
